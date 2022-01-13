@@ -85,3 +85,25 @@ nav{
         margin-left: 10px;
     }
 }
+
+.country-cont{
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .flag-boxer{
+        background-color: $bgcolor;
+        margin: 2rem;
+        box-shadow: 0 0 5px 1px blue;
+        text-align: center;
+        width: 320px;
+
+        h2{
+            padding: 0.5rem;
+        }
+    }
+}
