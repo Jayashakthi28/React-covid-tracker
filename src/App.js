@@ -10,10 +10,13 @@ import axios from 'axios';
 function App() {
   const [apiData,setapiData]=useState('');
   const [currData,setcurrData]=useState('');
-  useEffect(async ()=>{
-    let {data}=await axios.get('https://api.covid19api.com/summary');
-    await setapiData(data);
-    await setcurrData(data['Global']);
+  useEffect(()=>{
+    async function fetchData(){
+      let {data}=await axios.get('https://api.covid19api.com/summary');
+      await setapiData(data);
+      await setcurrData(data['Global']);
+    }
+    fetchData();
   },[]);
   console.log(currData,apiData);
   return (
