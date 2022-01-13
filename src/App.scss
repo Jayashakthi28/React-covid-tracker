@@ -1,0 +1,87 @@
+@font-face {
+    font-family: "DM Sans";
+    src: url('./assets/DMSans.ttf');
+}
+
+$font:"DM Sans";
+$bgcolor:#0038FF;
+$color:white;
+
+*,*::before,*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: $font;
+    color: $color;
+}
+
+
+@mixin flex($dir:row,$jusCnt:center,$alitm:center) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $jusCnt;
+    align-items: $alitm;
+}
+
+nav{
+    padding: 1rem;
+    @include flex($dir:row,$jusCnt:space-between);
+    background-color: $bgcolor;
+    h2{
+        font-size: 2rem;
+    }
+}
+
+.main-det{
+    background-image: url(./assets/backdrop.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.det-display{
+    z-index: 2;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.816);
+    @include flex($jusCnt:space-evenly,$alitm:unset);
+    text-align: center;
+
+    .case-cont{
+        @include flex($dir:column,$jusCnt:space-evenly);
+
+        h2{
+            font-size: 1.8rem;
+        }
+    }
+
+    img{
+        min-height: 200px;
+    }
+
+}
+
+.searchbar{
+    padding: 1rem;
+    color: black;
+    border-radius: 2rem;
+    box-shadow: 0 0 10px 1px blue;
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: clamp(300px,10vw,600px);
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    input{
+        outline: 0;
+        border: 0;
+        font-size: 1.2rem;
+        color: black;
+        width: 100%;
+    }
+    .searchicon{
+        fill: black;
+        width: 25px;
+        height: auto;
+        margin-left: 10px;
+    }
+}
