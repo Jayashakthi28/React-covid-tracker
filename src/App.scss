@@ -48,14 +48,18 @@ nav{
 
     .case-cont{
         @include flex($dir:column,$jusCnt:space-evenly);
-
+        width: 200px;
         h2{
             font-size: 1.8rem;
         }
     }
 
-    img{
-        min-height: 200px;
+    .flag-wrap{
+        img{
+            min-width: 320px;
+            min-height: 213px;
+            background-color: black;
+        }
     }
 
 }
