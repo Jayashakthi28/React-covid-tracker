@@ -6,25 +6,33 @@ import CountryCont from './components/CountryCont';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
-
 function App() {
-  const [apiData,setapiData]=useState('');
-  const [currData,setcurrData]=useState('');
+  const [isDataFetch,setisDataFetch]=useState(false);
+  const [apiData,setapiData]=useState({});
+  // const [currData,setcurrData]=useState('');
+
   useEffect(()=>{
     async function fetchData(){
       let {data}=await axios.get('https://api.covid19api.com/summary');
-      await setapiData(data);
-      await setcurrData(data['Global']);
+      data.Global.Country="Overall";
+      data.Global.CountryCode="Overall";
+      setapiData({
+        countries:data["Countries"],
+        curr:data["Global"],
+        date:data["Date"]
+      });
+      setisDataFetch(true);
     }
     fetchData();
   },[]);
-  console.log(currData,apiData);
+  console.log(apiData);
   return (
+    isDataFetch &&
     <div className="App">
       <Nav/>
-      <MainDet data={currData}/>
+      <MainDet data={apiData.curr}/>
       <SearchBar/>
-      <CountryCont/>      
+      <CountryCont data={apiData.countries} setter={{setapiData,apiData}}/>      
     </div>
   );
 }
