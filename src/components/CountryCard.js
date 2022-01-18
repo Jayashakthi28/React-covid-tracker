@@ -22,7 +22,7 @@ function CountryCard(props){
     }
     else{
         return(
-            <div className="flag-boxer" onClick={()=>{
+            <div onClick={()=>{
                 currChanger(props.setter,props.data)
                 }}>
                 <img src={url} style={{width:"320px",height:"213px",backgroundColor:"blue"}} alt=""></img>

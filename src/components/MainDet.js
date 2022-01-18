@@ -1,8 +1,30 @@
 import CountUp from 'react-countup';
 import CountryCard from './CountryCard';
+import {useParams,useLocation} from 'react-router-dom';
+import { useContext } from 'react';
+import {ApiContext} from '../App';
 
-
-function MainDet({data}){
+function MainDet(){
+    console.log(useLocation());
+    let country;
+    let params=useParams();
+    switch (useLocation().pathname) {
+        case '/':
+            country="Overall";
+            break;
+        case '/india':
+            country="india";
+            break;
+        default:
+            country=params.country;
+    }
+    let data=useContext(ApiContext);
+    data=(country==="Overall")?(data.global):(data.countries.filter((t)=>{
+        let a=t.Country.toLowerCase();
+        let b=country.toLowerCase();
+        return a===b;
+    }));
+    data=(data.length)?data[0]:data;
     let totDeaths=+data?.TotalDeaths;
     let totConfirmed=+data?.TotalConfirmed;
     let newDeaths=+data.NewDeaths;

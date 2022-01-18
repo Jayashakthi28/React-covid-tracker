@@ -1,26 +1,21 @@
 import CountryCard from "./CountryCard";
-import {Link} from "react-scroll";
+import {animateScroll as scroll} from "react-scroll";
+import { NavLink } from "react-router-dom";
 function CountryCont({ data, setter }) {
   console.log(setter);
   return (
     <div className="country-cont">
       {data.map((t) => (
-        <Link         
-        to="header"
-        key={t.CountryCode}
-        spy={true}
-        smooth={true}
-        offset={-100}
-        duration={500}>
-        <CountryCard
-          key={t.CountryCode}
-          for="cc"
-          country={t.Country}
-          country_code={t.CountryCode}
-          data={t}
-          setter={setter}
-        />
-        </Link>
+        <NavLink className={"flag-boxer"} to={`/country/${t.Country}`} onClick={scroll.scrollToTop({duration:500})} key={t.Country}>
+            <CountryCard
+              key={t.CountryCode}
+              for="cc"
+              country={t.Country}
+              country_code={t.CountryCode}
+              data={t}
+              setter={setter}
+            />
+        </NavLink>
       ))}
     </div>
   );
