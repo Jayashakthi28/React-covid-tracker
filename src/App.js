@@ -15,7 +15,7 @@ export function App() {
   const [apiData,setapiData]=useState({});
   const location=useLocation().pathname;
   const navRender=location.search(/^\/india*/gi);
-  
+  const params=useParams();
   useEffect(()=>{
     async function fetchData(){
       let {data}=await axios.get('https://api.covid19api.com/summary');
@@ -33,7 +33,7 @@ export function App() {
   useEffect(()=>{
     scroll.scrollToTop({duration:500});
     console.log("Use Params");
-  },[useParams()]);
+  },[params]);
   
   console.log(apiData);
   
