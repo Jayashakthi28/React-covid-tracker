@@ -22,7 +22,7 @@ export function App() {
       data.Global.Country="Overall";
       data.Global.CountryCode="Overall";
       setapiData({
-        countries:data["Countries"],
+        countries:data["Countries"].sort((a,b)=>{return Math.random()-0.5}),
         global:data["Global"],
         date:data["Date"]
       });
@@ -32,10 +32,8 @@ export function App() {
   },[]);
   useEffect(()=>{
     scroll.scrollToTop({duration:500});
-    console.log("Use Params");
   },[params]);
   
-  console.log(apiData);
   
   return (
     isDataFetch &&
@@ -44,7 +42,7 @@ export function App() {
         <Nav/>
         <MainDet/>
         <SearchBar/>
-        {(navRender===0)?'':<CountryCont data={apiData.countries} setter={{setapiData,apiData}}/> }     
+        {(navRender===0)?'':<CountryCont/> }     
       </ApiContext.Provider>
     </div>
   );

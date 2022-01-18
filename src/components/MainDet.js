@@ -5,7 +5,6 @@ import { useContext } from 'react';
 import {ApiContext} from '../App';
 
 function MainDet(){
-    console.log(useLocation());
     let country;
     let params=useParams();
     switch (useLocation().pathname) {
