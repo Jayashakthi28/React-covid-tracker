@@ -11,6 +11,7 @@ ReactDOM.render(
         <Route path="/" element={<App/>}/>
         <Route path="/country/:country" element={<App/>} />
         <Route path="/india" element={<App/>}/>
+        <Route path='/india/:state' element={<App/>}/>
       </Routes>
     </Router>
   </React.StrictMode>,

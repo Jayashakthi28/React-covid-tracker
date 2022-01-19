@@ -4,10 +4,9 @@ import {ApiContext} from "../App";
 import { useCallback, useContext, useRef, useState } from "react";
 import useCountrySearch from "./useCountrySearch";
 
-function CountryCont() {
-
-  const countryCont=useRef();
-  const data=useContext(ApiContext)[0].countries;
+export default function StateCont() {
+    const countryCont=useRef();
+  const data=useContext(ApiContext)[1].statewise;
   const [arrNum,setarrNum]=useState(6);
   const {
     retArr
@@ -28,14 +27,17 @@ function CountryCont() {
   return (
     <div className="country-cont" ref={countryCont}>
       {retArr.map((t,i) => {
+        if(t.state==="Total"){
+            return ''
+        }
         if(i+1===retArr.length){
           return(
-            <NavLink ref={lastCountryCall} className={"flag-boxer"} to={`/country/${t.Country}`} key={t.Country}>
+            <NavLink ref={lastCountryCall} className={"flag-boxer"} to={`/india/${t.state}`} key={t.state}>
               <CountryCard
-                key={t.CountryCode}
+                key={t.state}
                 for="cc"
-                country={t.Country}
-                country_code={t.CountryCode}
+                country={t.state}
+                country_code={t.statecode}
                 data={t}
               />
             </NavLink>
@@ -43,12 +45,12 @@ function CountryCont() {
         }
         else{
           return(
-            <NavLink className={"flag-boxer"} to={`/country/${t.Country}`} key={t.Country}>
+            <NavLink className={"flag-boxer"} to={`/india/${t.state}`} key={t.state}>
               <CountryCard
-                key={t.CountryCode}
+                key={t.state}
                 for="cc"
-                country={t.Country}
-                country_code={t.CountryCode}
+                country={t.state}
+                country_code={t.statecode}
                 data={t}
               />
             </NavLink>
@@ -58,5 +60,3 @@ function CountryCont() {
     </div>
   );
 }
-
-export default CountryCont;

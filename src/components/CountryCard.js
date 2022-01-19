@@ -1,8 +1,12 @@
-const image=require('../assets/overall.jpg');
+import { IsIndia } from './IsIndia';
 
+const image=require('../assets/overall.jpg');
+const noImg=require('../assets/noImg.jpg')
+const indImg="https://countryflagsapi.com/png/ind";
+console.log(image,noImg,indImg);
 
 function CountryCard(props){
-    const url=(props.country==='Overall')?image:`https://countryflagsapi.com/png/${props.country_code}`;
+    let url=(props.country==='Overall')?image:(props.country)?((IsIndia())?indImg:`https://countryflagsapi.com/png/${props.country_code}`):noImg;
     if(props.for==="main-det"){
         return(
             <div className="flag-wrap">

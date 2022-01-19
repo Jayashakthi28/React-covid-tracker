@@ -3,11 +3,8 @@ import CountryCard from "./CountryCard";
 import { useParams, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../App";
-// eslint-disable-next-line
-import { Chart as ChartJS } from "chart.js/auto";
-import { Line } from "react-chartjs-2";
 import axios from "axios";
-import ReactLoading from "react-loading";
+import Graph from "./Graph";
 
 function apiFetch(url, setcountryData) {
   axios({
@@ -26,16 +23,7 @@ function MainDet() {
   let country;
   let params = useParams();
   const pathName = useLocation().pathname;
-  switch (pathName) {
-    case "/":
-      country = "Overall";
-      break;
-    case "/india":
-      country = "india";
-      break;
-    default:
-      country = params.country;
-  }
+  country=(pathName==="/")?"Overall":params.country;
   let url =
     country === "Overall"
       ? "https://covid19.mathdro.id/api/daily"
@@ -49,7 +37,7 @@ function MainDet() {
   // eslint-disable-next-line 
   [params]);
 
-  let data = useContext(ApiContext);
+  let data = useContext(ApiContext)[0];
   data =
     country === "Overall"
       ? data.global
@@ -58,51 +46,7 @@ function MainDet() {
           let b = country.toLowerCase();
           return a === b;
         });
-  if (countryData) {
-    data = data.length ? data[0] : data;
-    let Infected;
-    let Recovered;
-    let Deaths;
-    let dateArr;
-    switch (pathName) {
-      case "/":
-        Infected = countryData.map((d) => d?.totalConfirmed);
-        Recovered = countryData.map((d) => d?.totalRecovered);
-        Deaths = countryData.map((d) => d?.deaths?.total);
-        dateArr = countryData.map((d) => d?.reportDate);
-        break;
-      case "/india":
-        Infected = countryData.map((d) => d.Active);
-        Recovered = countryData.map((d) => d.Recovered);
-        Deaths = countryData.map((d) => d.Deaths);
-        dateArr = countryData.map((d) => d.Date);
-        break;
-      default:
-        Infected = countryData.map((d) => d.Active);
-        Recovered = countryData.map((d) => d.Recovered);
-        Deaths = countryData.map((d) => d.Deaths);
-        dateArr = countryData.map((d) => d.Date);
-        break;
-    }
-
-    if (country === "china" || countryData.length>1000) {
-      Infected = [];
-      Recovered = [];
-      Deaths = [];
-      dateArr = [];
-      countryData.forEach((d, i) => {
-        if (
-          i !== countryData.length &&
-          countryData[i]?.Date !== countryData[i + 1]?.Date
-        ) {
-          Infected.push(d.Active);
-          Recovered.push(d.Recovered);
-          dateArr.push(d.Date);
-          Deaths.push(d.Deaths);
-        }
-      });
-      console.log({ Infected, Recovered, dateArr, Deaths });
-    }
+    data=data[0]||data;
 
     let totDeaths = +data?.TotalDeaths;
     let totConfirmed = +data?.TotalConfirmed;
@@ -167,46 +111,9 @@ function MainDet() {
             </div>
           </div>
         </div>
-        <div className="graph-cont">
-          {countryData ? (
-            <Line
-              data={{
-                labels: dateArr,
-                datasets: [
-                  {
-                    data: Infected,
-                    label: "Infected",
-                    borderColor: "rgba(0,0,255,0.5)",
-                    fill: true,
-                  },
-                  {
-                    data: Deaths,
-                    label: "Deaths",
-                    borderColor: "rgba(255,0,0,1)",
-                    fill: true,
-                  },
-                  {
-                    data: Recovered,
-                    label: "Recovered",
-                    borderColor: "rgba(0,255,0,0.5)",
-                    fill: true,
-                  },
-                ],
-              }}
-            />
-          ) : (
-            <ReactLoading
-              type="bubbles"
-              color="#0038FF"
-              height={150}
-              width={150}
-            />
-          )}
-        </div>
+        <Graph countryData={countryData} pathName={pathName} country={country}/>
       </>
     );
-  }
-  return <></>;
 }
 
 export default MainDet;
