@@ -7,7 +7,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { animateScroll as scroll } from 'react-scroll';
 import { useParams,useLocation } from 'react-router-dom';
-
+import ReactLoading from 'react-loading';
 export const ApiContext=React.createContext();
 
 export function App() {
@@ -36,7 +36,7 @@ export function App() {
   
   
   return (
-    isDataFetch &&
+    (isDataFetch)?
     <div className="App">
       <ApiContext.Provider value={apiData}>
         <Nav/>
@@ -44,6 +44,9 @@ export function App() {
         <SearchBar/>
         {(navRender===0)?'':<CountryCont/> }     
       </ApiContext.Provider>
+    </div>:
+    <div className='loader'>
+          <ReactLoading type='bubbles' color='#0038FF' height={150} width={150}/>
     </div>
   );
 }
