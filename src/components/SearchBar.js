@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import {BsSearch} from 'react-icons/bs';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { IsIndia } from './IsIndia';
 
 function searchHandle(e,setsearchState,ref){

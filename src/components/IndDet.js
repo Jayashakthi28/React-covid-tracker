@@ -3,7 +3,6 @@ import CountryCard from "./CountryCard";
 import { useParams, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../App";
-import axios from "axios";
 import Graph from "./Graph";
 
 
@@ -14,11 +13,10 @@ export default function IndDet() {
     const pathName = useLocation().pathname;
     let state=((pathName==="/india")?"total":params.state);
     console.log(useContext(ApiContext)[1].statewise)
-    let [Maindata,setMaindata] =useState(useContext(ApiContext)[1].statewise);
+    let [Maindata] =useState(useContext(ApiContext)[1].statewise);
     let [stateData, setstateData] = useState(Maindata.filter(t=>t.state.toLowerCase()===state.toLowerCase()));  
     let data;
     useEffect(() => {
-        let currState=((pathName==="/india")?"total":params.state);
         setstateData(Maindata.filter(t=>t.state.toLowerCase()===state.toLowerCase()))
     },
     // eslint-disable-next-line 
