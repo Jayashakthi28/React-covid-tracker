@@ -43,6 +43,7 @@ function MainDet() {
   let [countryData, setcountryData] = useState("");
 
   useEffect(() => {
+    setcountryData([]);
     apiFetch(url, setcountryData);
   },
   // eslint-disable-next-line 
@@ -84,7 +85,7 @@ function MainDet() {
         break;
     }
 
-    if (country === "china") {
+    if (country === "china" || countryData.length>1000) {
       Infected = [];
       Recovered = [];
       Deaths = [];
