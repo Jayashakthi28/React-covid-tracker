@@ -24,10 +24,13 @@ function MainDet() {
   let params = useParams();
   const pathName = useLocation().pathname;
   country=(pathName==="/")?"Overall":params.country;
+  let urlCountry;
+  urlCountry=country.replace('(','');
+  urlCountry=urlCountry.replace(')','');
   let url =
     country === "Overall"
       ? "https://covid19.mathdro.id/api/daily"
-      : `https://api.covid19api.com/dayone/country/${country}`;
+      : `https://api.covid19api.com/dayone/country/${urlCountry}`;
   let [countryData, setcountryData] = useState("");
 
   useEffect(() => {

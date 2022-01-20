@@ -3,7 +3,7 @@ import CountryCard from "./CountryCard";
 import { useParams, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../App";
-import Graph from "./Graph";
+import BarGraph from "./BarGraph";
 
 
   
@@ -26,6 +26,7 @@ export default function IndDet() {
       let totDeaths = +data?.deaths;
       let totConfirmed = +data?.confirmed;
       let recovered = +data?.recovered;
+      console.log(stateData);
       return (
         <>
           <div className="main-det" id="header">
@@ -73,7 +74,9 @@ export default function IndDet() {
               </div>
             </div>
           </div>
-          <Graph stateData={stateData} pathName={pathName} country={state}/>
+          <div className="graph-cont">
+            <BarGraph data={stateData[0]}/>
+          </div>
         </>
       );
 }

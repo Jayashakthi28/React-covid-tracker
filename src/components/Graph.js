@@ -31,7 +31,8 @@ export default function Graph({countryData,pathName,country}) {
             dateArr = countryData.map((d) => d.Date);
             break;
         }
-    
+
+
         if (country === "china" || countryData.length>1000) {
           Infected = [];
           Recovered = [];
@@ -57,27 +58,53 @@ export default function Graph({countryData,pathName,country}) {
     {countryData ? (
       <Line
         data={{
-          labels: dateArr,
+          labels:dateArr,
           datasets: [
             {
               data: Infected,
-              label: "Infected",
+              label: "Total Infected",
               borderColor: "rgba(0,0,255,0.5)",
+              backgroundColor:"rgba(0,0,255,0.5)",
               fill: true,
             },
             {
               data: Deaths,
-              label: "Deaths",
+              label: "Total Deaths",
               borderColor: "rgba(255,0,0,1)",
+              backgroundColor:"rgba(255,0,0,1)",
               fill: true,
             },
             {
               data: Recovered,
-              label: "Recovered",
+              label: "Total Recovered",
               borderColor: "rgba(0,255,0,0.5)",
+              backgroundColor:"rgba(0,255,0,0.5)",
               fill: true,
             },
           ],
+        }}
+        options={{
+          showLine:false,
+          maintainAspectRatio:false,
+          responsive:true,
+          aspectRatio:1,
+          layout:{
+            padding:30
+          },
+          plugins:{
+            legend:{
+              position:'bottom',
+              labels:{
+                boxHeight:30,
+                font:{
+                  weight:'Bold',
+                  family:'DM Sans',
+                  size:'18'
+                },
+                usePointStyle:true
+              }
+            }
+          }
         }}
       />
     ) : (
