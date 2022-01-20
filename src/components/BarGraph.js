@@ -1,8 +1,14 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import ReactLoading from "react-loading";
 
-export default function BarGraph({data:{confirmed,recovered,deaths}}) {
+export default function BarGraph({data}) {
+    console.log(data);
+    let confirmed=data?.confirmed;
+    let deaths=data?.deaths;
+    let recovered=data?.recovered;
     return (
+      (data)?
       <Bar
         data={{
             labels:["Infected","Recovered","Deaths"],
@@ -29,6 +35,12 @@ export default function BarGraph({data:{confirmed,recovered,deaths}}) {
               }
             }
           }}
-      />
+      />:
+      <ReactLoading
+      type="bubbles"
+      color="#0038FF"
+      height={150}
+      width={150}
+    />
   );
 }
