@@ -109,10 +109,14 @@ nav{
         margin: 2rem;
         box-shadow: 0 0 5px 1px blue;
         text-align: center;
-        width: 320px;
+        width: 300px;
 
         h2{
             padding: 0.5rem;
+        }
+
+        img{
+            background-color: black;
         }
     }
 }
