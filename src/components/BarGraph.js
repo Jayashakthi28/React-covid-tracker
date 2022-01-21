@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+// eslint-disable-next-line 
 import ReactLoading from "react-loading";
 
 export default function BarGraph({data}) {
@@ -36,11 +37,6 @@ export default function BarGraph({data}) {
             }
           }}
       />:
-      <ReactLoading
-      type="bubbles"
-      color="#0038FF"
-      height={150}
-      width={150}
-    />
+      <h1 style={{color:"black"}}>Sorry No Data Found</h1>
   );
 }

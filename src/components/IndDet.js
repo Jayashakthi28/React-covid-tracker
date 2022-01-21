@@ -12,8 +12,7 @@ export default function IndDet() {
     let params = useParams();
     const pathName = useLocation().pathname;
     let state=((pathName==="/india")?"total":params.state);
-    console.log(useContext(ApiContext)[1].statewise)
-    let [Maindata] =useState(useContext(ApiContext)[1].statewise);
+    let [Maindata] =useState(useContext(ApiContext)[1].statewise.filter(t=>t.state!=='State Unassigned'));
     let [stateData, setstateData] = useState(Maindata.filter(t=>t.state.toLowerCase()===state.toLowerCase()));  
     let data;
     useEffect(() => {
@@ -26,7 +25,8 @@ export default function IndDet() {
       let totDeaths = +data?.deaths;
       let totConfirmed = +data?.confirmed;
       let recovered = +data?.recovered;
-      console.log(stateData);
+      let country_code=(stateData.length)?"IN":undefined;
+      console.log(stateData,country_code);
       return (
         <>
           <div className="main-det" id="header">
@@ -34,7 +34,7 @@ export default function IndDet() {
               <CountryCard
                 for="main-det"
                 country={(state==="total")?"India":state}
-                country_code={"IN"}
+                country_code={country_code}
               />
               <div className="case-cont">
                 <h2>Total Cases:</h2>

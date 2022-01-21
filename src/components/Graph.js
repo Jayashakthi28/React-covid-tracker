@@ -2,6 +2,7 @@ import React from 'react';
 // eslint-disable-next-line
 import { Chart as ChartJS } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+// eslint-disable-next-line 
 import ReactLoading from "react-loading";
 
 export default function Graph({countryData,pathName,country}) {
@@ -52,10 +53,10 @@ export default function Graph({countryData,pathName,country}) {
           console.log({ Infected, Recovered, dateArr, Deaths });
         }
     }
-
+    console.log(countryData);
   return (
     <div className="graph-cont">
-    {countryData ? (
+    {countryData.length ? (
       <Line
         data={{
           labels:dateArr,
@@ -108,12 +109,7 @@ export default function Graph({countryData,pathName,country}) {
         }}
       />
     ) : (
-      <ReactLoading
-        type="bubbles"
-        color="#0038FF"
-        height={150}
-        width={150}
-      />
+<h1 style={{color:"black"}}>Sorry No Data Found</h1>
     )}
   </div>
   );
