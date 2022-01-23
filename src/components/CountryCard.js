@@ -3,7 +3,6 @@ import { IsIndia } from "./IsIndia";
 const image = require("../assets/overall.jpg");
 const noImg = require("../assets/noImg.jpg");
 const indImg = "https://countryflagsapi.com/png/ind";
-console.log(image, noImg, indImg);
 
 function CountryCard(props) {
   let url =
@@ -14,9 +13,8 @@ function CountryCard(props) {
         ? indImg
         : `https://countryflagsapi.com/png/${props.country_code}`
       : noImg;
-  console.log(props);
-  if(!props.country_code){
-    url=noImg;
+  if (!props.country_code) {
+    url = noImg;
   }
   if (props.for === "main-det") {
     return (

@@ -1,4 +1,4 @@
-import { useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useCovidDataGet = () => {
@@ -6,21 +6,20 @@ const useCovidDataGet = () => {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://api.covid19api.com/summary"
+      url: "https://api.covid19api.com/summary",
     })
       .then((res) => {
-        console.log(res.data);
         setapiData({
-        countries:res.data["Countries"],
-        curr:res.data["Global"],
-        date:res.data["Date"]
+          countries: res.data["Countries"],
+          curr: res.data["Global"],
+          date: res.data["Date"],
         });
       })
       .catch((e) => {
         console.log(e);
       });
-  },[]);
-  return {apiData}
+  }, []);
+  return { apiData };
 };
 
 export default useCovidDataGet;
