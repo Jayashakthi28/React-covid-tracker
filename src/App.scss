@@ -46,16 +46,30 @@ nav{
     background-color: rgba(0, 0, 0, 0.816);
     @include flex($jusCnt:space-evenly,$alitm:unset);
     text-align: center;
+    flex-wrap: wrap;
+
+    .case-wrap{
+        width: 70%;
+        min-height: 100%;
+        margin-left: 0.5rem;
+        @include flex($jusCnt:space-evenly,$alitm:unset);
+    }
 
     .case-cont{
-        @include flex($dir:column,$jusCnt:space-evenly);
-        width: 200px;
+        @include flex($dir:column,$jusCnt:space-evenly,$alitm:flex-start);
+        min-width: 200px;
+        margin: 0.5rem;
+        .case-head{
+            color: #ffce00;
+        }
         h2{
             font-size: 1.8rem;
+            margin: 0.2rem;
         }
     }
 
     .flag-wrap{
+        margin: 1rem;
         img{
             min-width: 320px;
             min-height: 213px;
@@ -136,4 +150,11 @@ nav{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width:1230px){
+    .case-wrap{
+        flex-wrap: wrap;
+        margin-left: 0;
+    }
 }

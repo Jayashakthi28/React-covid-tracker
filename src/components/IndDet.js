@@ -36,41 +36,43 @@ export default function IndDet() {
                 country={(state==="total")?"India":state}
                 country_code={country_code}
               />
-              <div className="case-cont">
-                <h2>Total Cases:</h2>
-                <h2>
-                  <CountUp
-                    start={0}
-                    end={totConfirmed}
-                    duration={1}
-                    delay={1}
-                    separator=","
-                  ></CountUp>
-                </h2>
-              </div>
-              <div className="case-cont">
-                <h2>Total Deaths:</h2>
-                <h2>
-                  <CountUp
-                    start={0}
-                    end={totDeaths}
-                    duration={1}
-                    delay={1}
-                    separator=","
-                  ></CountUp>
-                </h2>
-              </div>
-              <div className="case-cont">
-                <h2>Total Recovered:</h2>
-                <h2>
-                  <CountUp
-                    start={0}
-                    end={recovered}
-                    duration={1}
-                    delay={1}
-                    separator=","
-                  ></CountUp>
-                </h2>
+              <div className="case-wrap">
+                <div className="case-cont">
+                  <h2 className="case-head">Total Cases:</h2>
+                  <h2>
+                    <CountUp
+                      start={0}
+                      end={totConfirmed}
+                      duration={1}
+                      delay={1}
+                      separator=","
+                    ></CountUp>
+                  </h2>
+                </div>
+                <div className="case-cont">
+                  <h2 className="case-head">Total Deaths:</h2>
+                  <h2>
+                    <CountUp
+                      start={0}
+                      end={totDeaths}
+                      duration={1}
+                      delay={1}
+                      separator=","
+                    ></CountUp>
+                  </h2>
+                </div>
+                <div className="case-cont">
+                  <h2 className="case-head">Total Recovered:</h2>
+                  <h2>
+                    <CountUp
+                      start={0}
+                      end={recovered}
+                      duration={1}
+                      delay={1}
+                      separator=","
+                    ></CountUp>
+                  </h2>
+                </div>
               </div>
             </div>
           </div>
